@@ -1,0 +1,12 @@
+#---------------------------------------------------------------------
+# frontends
+#---------------------------------------------------------------------
+
+<% @config['frontends'].each do |name, config| -%>
+  frontend <%= name %>
+    bind <%= config[:bind_address] %>:<%= config[:bind_port] %>  <% if config[:ssl] == true %> ssl crt <%= config[:ssl_cert_file] %> <% end %>
+    use_backend <%= config[:backend] %>
+    <% config[:options].each do |option| %>
+    <%= option %>
+    <% end %>
+<% end %>

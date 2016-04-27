@@ -1,0 +1,4 @@
+<%= render "partial_haproxy_global_section.erb", option: {} %>
+<%= render "partial_haproxy_default_section.erb", option: { variables: { config: @config }} %>
+<%= render "partial_haproxy_frontend_section.erb", option: { variables: { config: @config }} %>
+<%= render "partial_haproxy_backend_section.erb", option:{ variables: { config: @config }} %>

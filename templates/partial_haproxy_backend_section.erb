@@ -1,0 +1,15 @@
+#---------------------------------------------------------------------
+# backends
+#---------------------------------------------------------------------
+
+<% @config['backends'].each do |name, config| -%>
+  backend <%= name %>
+    balance <%= config[:balance_method] %>
+    option <%= config[:health_check] %>
+    <% config[:backend_members].each_with_index do |member, index| %>
+    server <%= "#{name}#{index} #{member[:ip_address]}:#{member[:port]}" %> check fall 3 rise 2
+    <% end %>
+    <% config[:options].each do |option| %>
+    <%= option %>
+    <% end %>
+<% end %>

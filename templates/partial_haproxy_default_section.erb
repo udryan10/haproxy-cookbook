@@ -1,0 +1,14 @@
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+  <% @config['defaults'].each do |key, value| -%>
+    <% if value.is_a?(Array) %>
+      <% value.each do |option| %>
+        <%= "#{key} #{option}" %>
+      <% end %>
+    <% else %>
+      <%= "#{key} #{value}"%>
+    <% end %>
+  <% end %>

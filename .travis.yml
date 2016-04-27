@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.1.0
+gemfile:
+   - spec/Gemfile
+script:
+  - bundle exec rake foodcritic
+  - bundle exec rake rubocop
+  - bundle exec rake chefspec
+cache:
+  bundler: true
+after_success:
+  - coveralls

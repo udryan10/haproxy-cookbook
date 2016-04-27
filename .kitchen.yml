@@ -1,0 +1,26 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["forwarded_port", {guest: 80, host: 8000}]
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-7.1
+suites:
+  - name: default
+    run_list:
+      - recipe[haproxy::default]
+    attributes:
+      frontend:
+        bind_address: '*'
+        bind_port: 80
+        backend: 'default'
+        ssl: false
+        options: []
+      backend:
+        balance_method: 'roundrobin'
+        backend_members: [{ ip_address: 'www.google.com', port: 80 }]
+        health_check: 'httpchk HEAD / HTTP/1.1'
+        options: ['reqirep ^Host: Host:\ www.google.com']
