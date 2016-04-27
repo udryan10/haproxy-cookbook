@@ -1,7 +1,8 @@
 # haproxy Cookbook
 
-[![Build Status](https://secure.travis-ci.org/udryan10/test.png)](http://travis-ci.org/udryan10/test)
-[![Coverage Status](https://coveralls.io/repos/github/udryan10/test/badge.svg?branch=master)](https://coveralls.io/github/udryan10/test?branch=master)
+[![Build Status](https://secure.travis-ci.org/udryan10/haproxy-cookbook.png)](http://travis-ci.org/udryan10/haproxy-cookbook)
+[![Coverage Status](https://coveralls.io/repos/github/udryan10/haproxy-cookbook/badge.svg?branch=master)](https://coveralls.io/github/udryan10/haproxy-cookbook?branch=master)
+
 
 Installs and configures haproxy loadbalancer
 
@@ -92,9 +93,10 @@ Just include `haproxy::default` in your node's `run_list`:
 
 ### Chefspec
 
-2 custom matchers have been defined for testing haproxy_{frontend,backend} resources:
+3 custom matchers have been defined for testing haproxy_{frontend,backend,defaults} resources:
   - define_haproxy_frontend
   - define_haproxy_backend
+  - define_haproxy_defaults
 ```
 it 'should define haproxy frontend' do
   expect(chef_run).to define_haproxy_frontend('frontend1')
@@ -102,5 +104,9 @@ end
 
 it 'should define haproxy backend' do
   expect(chef_run).to define_haproxy_backend('backend1')
+end
+
+it 'should define haproxy defaults' do
+  expect(chef_run).to define_haproxy_defaults('')
 end
 ```
