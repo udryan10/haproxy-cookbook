@@ -92,9 +92,10 @@ Just include `haproxy::default` in your node's `run_list`:
 
 ### Chefspec
 
-2 custom matchers have been defined for testing haproxy_{frontend,backend} resources:
+3 custom matchers have been defined for testing haproxy_{frontend,backend} resources:
   - define_haproxy_frontend
   - define_haproxy_backend
+  - define_haproxy_defaults
 ```
 it 'should define haproxy frontend' do
   expect(chef_run).to define_haproxy_frontend('frontend1')
@@ -102,5 +103,9 @@ end
 
 it 'should define haproxy backend' do
   expect(chef_run).to define_haproxy_backend('backend1')
+end
+
+it 'should define haproxy defaults' do
+  expect(chef_run).to define_haproxy_defaults('')
 end
 ```
