@@ -92,7 +92,7 @@ Just include `haproxy::default` in your node's `run_list`:
 
 ### Chefspec
 
-3 custom matchers have been defined for testing haproxy_{frontend,backend} resources:
+3 custom matchers have been defined for testing haproxy_{frontend,backend,defaults} resources:
   - define_haproxy_frontend
   - define_haproxy_backend
   - define_haproxy_defaults
