@@ -7,7 +7,7 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:haproxy_backend, :create, resource_name)
   end
 
-  def define_haproxy_default(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(:haproxy_backend, :create, resource_name)
+  def define_haproxy_defaults(resource_name)
+    ChefSpec::Matchers::ResourceMatcher.new(:haproxy_defaults, :create, resource_name)
   end
 end

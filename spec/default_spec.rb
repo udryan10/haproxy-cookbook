@@ -16,11 +16,11 @@ describe 'haproxy::default' do
   end
 
   it 'should define haproxy frotend' do
-    expect(chef_run).to define_haproxy_frontend('frontend1')
+    expect(chef_run).to define_haproxy_frontend('default')
   end
 
   it 'should define haproxy backend' do
-    expect(chef_run).to define_haproxy_backend('backend1')
+    expect(chef_run).to define_haproxy_backend('default')
   end
 
   it 'should create /etc/haproxy/haproxy.cfg from template' do
