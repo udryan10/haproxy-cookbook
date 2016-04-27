@@ -1,7 +1,7 @@
 # haproxy Cookbook
 
 [![Build Status](https://secure.travis-ci.org/udryan10/haproxy-cookbook.png)](http://travis-ci.org/udryan10/haproxy-cookbook)
-[![Coverage Status](https://coveralls.io/repos/github/udryan10/test/badge.svg?branch=master)](https://coveralls.io/github/udryan10/test?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/udryan10/haproxy-cookbook/badge.svg?branch=master)](https://coveralls.io/github/udryan10/haproxy-cookbook?branch=master)
 
 
 Installs and configures haproxy loadbalancer
