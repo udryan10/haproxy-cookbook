@@ -32,18 +32,20 @@ Installs and configures haproxy loadbalancer
 sets up an haproxy frontend
 ```
 haproxy_frontend 'frontend1' do
-  bind_address '*'
-  bind_port 80
-  backend 'backend1'
-  ssl false
-  options['compression algo gzip']
+  config(
+    bind_address: '*',
+    bind_port: 80,
+    backend: 'backend1',
+    ssl: false,
+    options: ['compression algo gzip']
+  )
 end
 ```
 will generate:
 ```
 frontend frontend1
   bind *:80
-  use_backend testbackend
+  use_backend backend1
   compression algo gzip
 ```
 
@@ -51,10 +53,12 @@ frontend frontend1
 sets up an haproxy backend
 ```
 haproxy_backend 'backend1' do
-  balance_method 'roundrobin'
-  backend_members [{ ip_address: 1.1.1.1, port: 80 }, { ip_address: 2.2.2.2, port: 80 }]
-  health_check 'httpchk HEAD / HTTP/1.1'
-  options ['option httpclose', 'option  forwardfor']
+  config(
+    balance_method: 'roundrobin',
+    backend_members: [{ ip_address: 1.1.1.1, port: 80 }, { ip_address: 2.2.2.2, port: 80 }],
+    health_check: 'httpchk HEAD / HTTP/1.1',
+    options: ['option httpclose', 'option  forwardfor']
+  )
 end
 ```
 will generate:
@@ -66,13 +70,6 @@ backend backend1
   option httpchk HEAD / HTTP/1.1
   option httpclose
   option  forwardfor
-```
-### haproxy_config
-generates an haproxy config from the defined frontend and backend resources
-```
-haproxy_config '/etc/haproxy/haproxy.cfg' do
-  action :create
-end
 ```
 ## Usage
 
@@ -95,7 +92,7 @@ Just include `haproxy::default` in your node's `run_list`:
 
 ### Chefspec
 
-3 custom matchers have been defined for testing haproxy_{frontend,backend} resources:
+2 custom matchers have been defined for testing haproxy_{frontend,backend} resources:
   - define_haproxy_frontend
   - define_haproxy_backend
 ```
@@ -105,9 +102,5 @@ end
 
 it 'should define haproxy backend' do
   expect(chef_run).to define_haproxy_backend('backend1')
-end
-
-it 'should create haproxy config' do
-  expect(chef_run).to create_haproxy_config('/etc/haproxy/haproxy.cfg')
 end
 ```
