@@ -7,7 +7,5 @@ script:
   - bundle exec rake foodcritic
   - bundle exec rake rubocop
   - bundle exec rake chefspec
-cache:
-  bundler: true
-#after_success:
-#  - coveralls
+after_success:
+  - coveralls
