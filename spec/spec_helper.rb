@@ -1,5 +1,5 @@
 require 'chefspec'
 require 'coveralls'
 
-Coveralls.wear!
+#Coveralls.wear!
 at_exit { ChefSpec::Coverage.report! }
