@@ -34,6 +34,7 @@ module Haproxy
       config_schema.each do |key, value|
         return error "required parameter #{key} not defined" if value[:required] == true
       end
+      true
     end
 
     def self.error(msg)
